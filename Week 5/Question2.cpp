@@ -7,7 +7,9 @@ using namespace std;
 
 int main()
 {
-    int n, key;
+    int n, t,key;
+    cin>>t;
+    while(t--){
     cout << "Enter the number of elements: ";
     cin >> n;
     int arr[n];
@@ -36,5 +38,6 @@ int main()
         }
     }
     cout << "No such elements exist." << endl;
+    }
     return 0;
 }

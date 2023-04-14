@@ -7,8 +7,9 @@ using namespace std;
 
 int main()
 {
-    int n;
-    cout << "Enter the number of elements: ";
+    int n,t;
+    cin>>t;
+    while(t--){
     cin >> n;
     char arr[n];
     cout << "Enter the elements: ";
@@ -32,6 +33,7 @@ int main()
         }
     }
     cout << "The maximum occuring character is " << maxChar << " with " << max << " occurences." << endl;
+    }
     return 0;
 }
 

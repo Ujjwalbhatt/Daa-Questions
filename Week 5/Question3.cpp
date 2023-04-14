@@ -7,7 +7,9 @@ using namespace std;
 
 int main()
 {
-    int m, n;
+    int m, n,t;
+    cin>>t;
+    while(t--){
     cout << "Enter the size of the first array: ";
     cin >> m;
     int arr1[m];
@@ -44,5 +46,6 @@ int main()
         }
     }
     cout << endl;
+    }
     return 0;
 }

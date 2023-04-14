@@ -1,92 +1,84 @@
 #include <iostream>
-#include <cstdlib>   // for rand() and srand()
-#include <ctime>     // for time()
+#include <cstdlib>   
+#include <ctime>     
 using namespace std;
 
-void merge(int arr[], int l, int m, int r, int &cmp_count, int &inv_count)
+void printArray(int *arr, int size)
 {
-    int n1 = m - l + 1;
-    int n2 = r - m;
-
-    int L[n1], R[n2];
-    for (int i = 0; i < n1; i++)
-        L[i] = arr[l + i];
-    for (int j = 0; j < n2; j++)
-        R[j] = arr[m + 1 + j];
-
-    int i = 0, j = 0, k = l;
-    while (i < n1 && j < n2)
-    {
-        cmp_count++;
-        if (L[i] <= R[j])
-        {
-            arr[k] = L[i];
+    for (int i=0; i < size; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+}
+void merge(int *arr, int low, int mid, int high, int &cmp_count, int &inv_count)
+{
+    int b[100],i,j,k;
+    i=low;
+    j=mid+1;
+    k=low;
+    while(i<=mid && j<=high){
+        if(arr[i]<arr[j]) {
+            b[k] = arr[i];
             i++;
-        }
-        else
-        {
-            arr[k] = R[j];
+            k++;
+        }  
+        else{
+            b[k] = arr[j];
             j++;
-            inv_count += n1 - i;
-        }
-        k++;
-    }
+            k++;
+        }  
 
-    while (i < n1)
+        
+
+    }
+    while (i<=mid)  
     {
-        arr[k] = L[i];
+        b[k] = arr[i];
+        k++;
         i++;
-        k++;
     }
-
-    while (j < n2)
-    {
-        arr[k] = R[j];
+    while(j<=high){
+        b[k] = arr[j];
+        k++;
         j++;
-        k++;
     }
+    for(int i=low;i<=high;i++){
+        cout<<b[i]<<" ";
+        arr[i] = b[i];
+    }
+    cmp_count++;
+    cout<<endl;
 }
 
-void mergeSort(int arr[], int l, int r, int &cmp_count, int &inv_count)
+   
+void mergeSort(int *arr, int low, int high, int &cmp_count, int &inv_count)
 {
-    if (l >= r)
-        return;
-
-    int m = l + (r - l) / 2;
-    mergeSort(arr, l, m, cmp_count, inv_count);
-    mergeSort(arr, m + 1, r, cmp_count, inv_count);
-    merge(arr, l, m, r, cmp_count, inv_count);
+    int mid;
+    if (low < high){
+                                    
+            mid=(high+low)/2;
+            mergeSort(arr,low,mid,cmp_count,inv_count);
+            mergeSort(arr,mid+1,high,cmp_count,inv_count);
+            merge(arr,low,mid,high,cmp_count,inv_count);
+    }   
 }
+
 
 int main()
 {
     int n;
-    int t;
-    double time_taken;
-    cin >> t;
-    while(t--){
-
-    cin >> n;
+    int cmp_count=0,inv_count=0;
+    cout<<"Enter the size of the arrays: ";
+    cin>>n;
     int arr[n];
-    
-    for (int i = 0; i < n; i++){
-    //genrate random numbers
-        arr[i] = rand() % 1000;
+    for(int i = 0; i<n;i++){
+        cin>>arr[i];
     }
-
-    int cmp_count = 0, inv_count = 0;
-
-    clock_t start = clock();
-    mergeSort(arr, 0, n - 1, cmp_count, inv_count);
-    clock_t end = clock();
-
-    time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    
-   
-    cout << "\nNumber of comparisons: " << cmp_count << endl;
-    cout << "Number of inversions: " << inv_count << endl;
-    cout << "Time taken in ms:  " << time_taken * 1000000 << endl;
-    }
-
+    mergeSort(arr,0,n-1,cmp_count,inv_count);
+    cout<<"Sorted array: ";
+    printArray(arr,n);
     return 0;
 }
+
+
+
+

@@ -3,34 +3,33 @@
 #include <stdlib.h>
 void func(int arr[], int n, int key)
 {
-    int c = 0, i;
-    for (i = 0; i < n; i++)
-    {
-        if (arr[2 ^ i] == key)
-        {
-            c++;
-            break;
-        }
-        if (arr[2 ^ (i + 1) > key])
-        {
-            for (int j = 2 ^ (i + 1); j < n; j++)
-            {
-                if (arr[j] == key)
-                {
-                    c++;
-                    break;
-                }
-            }
-        }
+    // 1 2 3 4 5 6 7 8
+    int jump = 2,flag=0,low=0;
+ for(int i = 0;i<n;i=i+jump){
+    if(arr[i]==key){
+        flag = 1;
+        break;
     }
-    if (c > 1)
-    {
-        printf("present\n");
+    if(arr[i]<key){
+        low=i;
     }
-    else
-    {
-        printf("not present\n\n");
+    if(arr[i]>key){
+        break;
     }
+ }  
+ for(int i = low;i<n;i++){
+    if(arr[i] == key){
+        flag =1;
+        break;
+    }
+
+ }  
+ if(flag == 1){
+    printf("Element found");
+ }
+ else{
+        printf("Element not found");
+ }
 }
 int main()
 {

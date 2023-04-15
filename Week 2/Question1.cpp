@@ -76,11 +76,11 @@ int countOccurrences(int arr[], int n, int x)
     // Count elements on left side.
     int count = 1;
     int left = ind - 1;
+    int right = ind + 1;
     while (left >= 0 && arr[left] == x)
         count++, left--;
  
     // Count elements on right side.
-    int right = ind + 1;
     while (right < n && arr[right] == x)
         count++, right++;
  

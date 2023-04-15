@@ -27,8 +27,6 @@ void merge(int *arr, int low, int mid, int high, int &cmp_count, int &inv_count)
             k++;
         }  
 
-        
-
     }
     while (i<=mid)  
     {

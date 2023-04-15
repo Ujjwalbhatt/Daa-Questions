@@ -20,7 +20,9 @@ int main()
     int count[26] = {0};
     for (int i = 0; i < n; i++)
     {
+
         count[arr[i] - 'a']++;
+        
     }
     int max = 0;
     char maxChar;

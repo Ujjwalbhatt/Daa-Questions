@@ -38,12 +38,15 @@ int partition(int arr[], int low, int high)
             temp = arr[j];
             arr[j] = arr[i];
             arr[i] = temp;
+            
         }
     }while(i<j);
     temp = arr[low];
     arr[low] = arr[j];
     arr[j] = temp;
+
     return j;
+
 }
 void quickSort(int arr[], int low, int high)
 {

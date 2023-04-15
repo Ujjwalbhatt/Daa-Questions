@@ -14,19 +14,27 @@ void swap(int& a, int& b) {
     b = temp;
 }
 int partition(int arr[], int low, int high) {
-    int pivotIndex = low + rand() % (high - low + 1);
-    int pivotValue = arr[pivotIndex];
-    swap(arr[pivotIndex], arr[high]);
-    int i = low;
-    for (int j = low; j < high; j++) {
-         
-        if (arr[j] < pivotValue) {
-            swap(arr[i], arr[j]);
+    int i = low+1;
+    int j = high;
+    int pivot = arr[low];
+    do{
+        while(arr[i]<=pivot){
             i++;
         }
-    }
-    swap(arr[i], arr[high]);
-    return i;
+        while(arr[j]>pivot){
+            j--;
+        }
+        if(i<j){
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+
+    }while(i<j);
+     int temp = arr[low];
+    arr[low] = arr[j];
+     arr[j] = temp;
+    return j;
 }
 void quickSort(int arr[], int low, int high) {
     if (low < high) {
@@ -39,8 +47,7 @@ void quickSort(int arr[], int low, int high) {
 int main() {
     int n;
     int t;
-    cin >> t;
-    while(t--){
+    
     cin >> n;
     int arr[n];
     for (int i = 0; i < n; i++)
@@ -48,8 +55,10 @@ int main() {
     int k;
     cin >> k;
     quickSort(arr, 0, n - 1);
+     for (int i = 0; i < n; i++)
+        cout<<arr[i];
     cout << k << "th smallest element: " << arr[k - 1] << endl;
     cout << k << "th largest element: " << arr[n - k] << endl;
-    }
+    
     return 0;
 }

@@ -13,13 +13,7 @@ array.
 using namespace std;
 int cmp_count = 0;
 int swap_count = 0;
-void swap(int &a, int &b)
-{
-    int temp = a;
-    a = b;
-    b = temp;
-    swap_count++;
-}
+
 int partition(int arr[], int low, int high)
 {
     int pivot = arr[low];
